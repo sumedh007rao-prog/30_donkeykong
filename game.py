@@ -247,7 +247,7 @@ def main():
                     state = "play" if lives > 0 else "lose"
                     break
                 above = 0 < barrel.pos.y - player.pos.y + BARREL_R < 40
-                if not player.on_ground and above and abs(barrel.pos.x - player.pos.x) < 12 and not barrel.scored:
+                if not player.on_ground and above and abs(barrel.pos.x - player.pos.x) < 25 and not barrel.scored:
                     barrel.scored = True
                     score += int(100 * (score_multiplier(score) or 1))
                     on_barrel_jumped(player, barrel)
