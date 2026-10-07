@@ -28,6 +28,14 @@ def platform_y(platform, x):
 
 def theme_color(score):
     """Return an (r, g, b) background colour for the current score, or None for the default."""
+    if score < 300:
+        return None
+    elif score < 700:
+        return (35, 20, 25)
+    elif score < 1200:
+        return (55, 25, 20)
+    else:
+        return (80, 30, 20)
     pass
 
 
