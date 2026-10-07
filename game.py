@@ -41,6 +41,8 @@ def theme_color(score):
 
 def on_barrel_jumped(player, barrel):
     """Called when the player clears a barrel; add a bonus effect here."""
+      player.jump_message_pos = barrel.pos.copy()
+    player.jump_message_until = pygame.time.get_ticks() + 700
     pass
 
 
@@ -197,6 +199,12 @@ def draw_scene(screen, font, player, barrels, score, lives, state):
     pygame.draw.rect(screen, (50, 180, 240), body)
     hud = font.render(f"Score {score}   Lives {lives}   R = reset", True, (240, 240, 240))
     screen.blit(hud, (10, 8))
+    if hasattr(player, "jump_message_until"):
+    if pygame.time.get_ticks() < player.jump_message_until:
+        bonus = font.render("+100", True, (255, 255, 0))
+        pos = player.jump_message_pos
+        screen.blit(bonus, (pos.x - 20, pos.y - 35))
+   
     if state != "play":
         text = "YOU WIN! Press R" if state == "win" else "GAME OVER - Press R"
         label = font.render(text, True, (255, 255, 120))
